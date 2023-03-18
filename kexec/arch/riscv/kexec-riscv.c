@@ -114,14 +114,13 @@ int load_extra_segments(struct kexec_info *info, uint64_t kernel_base,
 						   initrd_size,
 						   initrd_size, 0,
 						   min_usable,
-						   max_usable, -1, 0);
+						   max_usable, 1, 0);
 
 		dtb_set_initrd(&fdt->buf, &fdt->size, initrd_base,
 			       initrd_base + initrd_size);
 
 		dbgprintf("Base addr for initrd image: 0x%lX\n", initrd_base);
 		min_usable = initrd_base;
-		max_usable = initrd_base;
 	}
 
 	/* Add device tree */
