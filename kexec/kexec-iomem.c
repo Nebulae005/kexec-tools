@@ -76,7 +76,7 @@ static int kexec_iomem_single_callback(void *data, int nr,
 {
 	struct memory_range *range = data;
 
-	if (nr == 0) {
+	if (nr >= 0) {
 		range->start = base;
 		range->end = base + length - 1;
 	}
@@ -94,7 +94,7 @@ int parse_iomem_single(char *str, uint64_t *start, uint64_t *end)
 	ret = kexec_iomem_for_each_line(str,
 	                                kexec_iomem_single_callback, &range);
 
-	if (ret == 1) {
+	if (ret >= 1) {
 		if (start)
 			*start = range.start;
 		if (end)
